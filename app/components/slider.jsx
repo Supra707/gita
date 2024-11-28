@@ -1,12 +1,11 @@
 'use client'
 import { Carousel } from "flowbite-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState,useEffect,useRef } from "react";
+import { useState } from "react";
 
 export function Slider() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isImageVisible, setIsImageVisible] = useState(false);
-  const imageRef = useRef([]);
+
   const Gita_chapters = [
     {
       image: "https://www.bhagavad-gita.us/wp-content/uploads/2012/09/gita-03.jpg",
@@ -147,21 +146,7 @@ export function Slider() {
       }
     }
   };
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = entry.target.getAttribute('data-index');
-          setIsImageVisible(true);
-          observer.unobserve(entry.target);
-        }
-      });
-    });
 
-    imageRef.current.forEach((img) => observer.observe(img));
-
-    return () => observer.disconnect();
-  }, []);
   return (
     <div className="h-[60vh] md:h-[100vh] relative">
       <Carousel
@@ -174,9 +159,8 @@ export function Slider() {
               {activeSlide === index && (
                 <>
                   <motion.img
-                    ref={(el) => imageRef.current[index] = el}
                     key={`image-${index}`}
-                    src={isImageVisible ? chapter.image : ''}
+                    src={chapter.image}
                     alt={chapter.main_heading}
                     className="object-cover w-full h-full bg-center brightness-50"
                     variants={imageVariants}
@@ -184,7 +168,6 @@ export function Slider() {
                     animate="animate"
                     exit="exit"
                     loading="lazy"
-                    data-index={index}  // For IntersectionObserver
                   />
                   <motion.div
                     key={`text-${index}`}
@@ -230,6 +213,7 @@ export function Slider() {
                             stiffness: 100
                           }
                         }}
+                       
                       >
                         {chapter.sub_heading}
                       </motion.p>
