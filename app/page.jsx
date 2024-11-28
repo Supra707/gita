@@ -46,6 +46,8 @@ const platformFeatures = [
 ];
 import { Navbarr } from './components/navbar';
 import { Slider } from './components/slider';
+import Footer from './components/footer';
+import {Divider} from "@nextui-org/divider";
 const Page = () => {
   return (
     <div>
@@ -65,7 +67,8 @@ const Page = () => {
           ))}
         </div>
       </div>
-
+      <Divider/>
+      <Footer/>
     </div>
   );
 };
