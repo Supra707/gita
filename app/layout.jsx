@@ -13,10 +13,10 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Explore the Bhagavad Gita - Timeless Wisdom for Modern Times",
-  description:
-    "Dive into the profound teachings of the Bhagavad Gita. Discover insights on life, spirituality, and purpose through beautifully presented chapters and verses.",
+  title: "Bhagavad Gita - Timeless Spiritual Wisdom",
+  description: "Explore the teachings of the Bhagavad Gita for life and purpose.",
 };
+
 
 
 export default function RootLayout({ children }) {
