@@ -148,7 +148,7 @@ export function Slider() {
   };
 
   return (
-    <div className="h-[60vh] md:h-[100vh] relative">
+    <div className="h-[100vh] relative">
       <Carousel
         onSlideChange={(currentSlide) => setActiveSlide(currentSlide)}
         indicators={false}
