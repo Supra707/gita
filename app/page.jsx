@@ -1,12 +1,73 @@
-import React from 'react'
-import { Slider } from './components/slider'
-const page = () => {
+import React from 'react';
+import { Card } from './components/card';
+const platformFeatures = [
+  {
+    title: "Enhance Knowledge and Wisdom",
+    description: "Gain deeper insights into ancient teachings and philosophies that can guide you in your daily life.",
+    imageSrc: "/image/19.jpg",
+    link: "https://platform.example.com/knowledge",
+    buttonText: "Explore Knowledge"
+  },
+  {
+    title: "Find Spiritual Guidance",
+    description: "Discover the power of spiritual teachings and how they can help you achieve inner peace and balance.",
+    imageSrc: "/image/20.jpg",
+    link: "https://platform.example.com/spiritual-guidance",
+    buttonText: "Get Guided"
+  },
+  {
+    title: "Practice Meditation & Mindfulness",
+    description: "Learn meditation techniques that can help calm your mind and improve mental clarity.",
+    imageSrc: "/image/21.jpg",
+    link: "https://platform.example.com/meditation",
+    buttonText: "Start Meditating"
+  },
+  {
+    title: "Learn Self-Improvement Techniques",
+    description: "Uncover methods for personal growth and development through disciplined practice and wisdom.",
+    imageSrc: "/image/22.jpg",
+    link: "https://platform.example.com/self-improvement",
+    buttonText: "Start Improving"
+  },
+  {
+    title: "Connect with Like-minded Individuals",
+    description: "Join a community of seekers and learners who share similar spiritual interests and practices.",
+    imageSrc: "/image/23.jpg",
+    link: "https://platform.example.com/community",
+    buttonText: "Join Now"
+  },
+  {
+    title: "Discover Ancient Wisdom",
+    description: "Access the timeless teachings of ancient sages and their insights into life’s deepest questions.",
+    imageSrc: "/image/24.jpg",
+    link: "https://platform.example.com/ancient-wisdom",
+    buttonText: "Uncover Wisdom"
+  }
+];
+import { Navbarr } from './components/navbar';
+import { Slider } from './components/slider';
+const Page = () => {
   return (
     <div>
-      <Slider/>
-      <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque reiciendis nesciunt magnam animi accusantium. Debitis, explicabo magni odio assumenda maxime ratione vel voluptates saepe temporibus. Hic, aspernatur deleniti! Accusamus minima molestias quo soluta sapiente qui sit optio, suscipit labore eum quod, non iste nulla nostrum. Perspiciatis, corrupti culpa voluptatem ducimus, iure quas optio soluta nobis earum et error nostrum distinctio, quae eligendi quo! Similique et minima sunt corrupti autem esse ex, illum assumenda soluta provident minus beatae numquam sit amet voluptatibus quasi velit consectetur aspernatur aliquid vitae rerum. Dignissimos iste officiis, illum, dolor quas animi minima doloribus vitae tempora harum sit nesciunt, delectus blanditiis autem deserunt soluta maiores aperiam. Necessitatibus non repudiandae magnam voluptate officia, est similique amet dignissimos corporis aspernatur possimus obcaecati culpa adipisci consequuntur, earum rem in, quod delectus accusantium eos. Veniam, autem consequuntur. Minus possimus accusamus perspiciatis, ipsa corrupti aliquid nam iste commodi suscipit nemo et fugiat esse consectetur beatae ea ad, sequi itaque veritatis rerum at earum ipsam in? Dignissimos nisi nobis perferendis ipsa itaque eligendi excepturi sit. Ab sunt commodi maiores blanditiis fugiat fuga ipsam pariatur sapiente voluptatem nam sed minima corporis magni placeat impedit at, adipisci obcaecati nihil, consequatur cum aliquid laborum? Sint tenetur vitae eum, blanditiis, error aliquid incidunt pariatur in ad reiciendis illum ullam, distinctio veniam explicabo modi! Quo magnam repellat obcaecati reprehenderit in ea possimus ut, placeat excepturi nostrum debitis voluptates, suscipit nihil? Itaque minus perspiciatis voluptate veniam doloremque et, sequi quae atque, veritatis rerum quidem molestias consequatur. Quaerat eaque, adipisci quas dolorum fugiat velit odit recusandae cupiditate et minima ratione dolore blanditiis ex error assumenda vitae itaque, nemo in, accusantium impedit dicta soluta ab exercitationem. Accusamus dignissimos ipsum vero explicabo eveniet enim! Exercitationem, qui obcaecati. Ullam labore molestias, praesentium deleniti dignissimos quia architecto vel molestiae sunt repellendus, non unde exercitationem ex deserunt consequuntur quidem fugit! At explicabo numquam maxime cum asperiores, perferendis quia nam dolore, similique tenetur facilis optio ea aperiam accusamus. Assumenda accusantium voluptate molestias quisquam possimus rem tenetur temporibus illum a earum in, animi alias praesentium voluptatem perferendis quam doloremque fugit laboriosam dolores eveniet? Necessitatibus dignissimos praesentium ipsum culpa illum velit fuga assumenda delectus? Nobis eum quam id odit, est, debitis corporis esse rem vitae officia fuga quasi veniam. Dicta, ad voluptatum adipisci non aspernatur magnam veritatis. Obcaecati officia blanditiis, omnis eius unde enim ab nesciunt recusandae deleniti vel, perspiciatis sunt quos impedit reiciendis modi fugit pariatur qui saepe atque soluta consectetur maiores alias. Quae officiis, voluptatem corrupti nesciunt eius odio officia. Corporis quae exercitationem id, eaque tempore animi officiis est voluptatum, nulla omnis, tempora asperiores quasi similique accusamus quo inventore error et? In nisi officiis modi voluptatem odio, magnam pariatur sunt cum ab sint omnis harum. Ducimus?</div>
-    </div>
-  )
-}
+      <Navbarr />
+      <Slider />
+      <div className="flex justify-center">
+        <div className="  p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {platformFeatures.map((feature, index) => (
+            <Card
+              key={index}
+              title={feature.title}
+              description={feature.description}
+              imageSrc={feature.imageSrc}
+              link={feature.link}
+              buttonText={feature.buttonText}
+            />
+          ))}
+        </div>
+      </div>
 
-export default page
+    </div>
+  );
+};
+
+export default Page;

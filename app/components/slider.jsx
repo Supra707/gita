@@ -2,7 +2,7 @@
 import { Carousel } from "flowbite-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-
+import { Button } from "@nextui-org/button";
 export function Slider() {
   const [activeSlide, setActiveSlide] = useState(0);
 
@@ -149,7 +149,7 @@ export function Slider() {
 
   return (
     <div className="h-[100vh] relative">
-      <Carousel
+      <Carousel pauseOnHover 
         onSlideChange={(currentSlide) => setActiveSlide(currentSlide)}
         indicators={false}
       >
@@ -217,7 +217,11 @@ export function Slider() {
                       >
                         {chapter.sub_heading}
                       </motion.p>
+                      <br/>
+                      <br/>
+                      <Button color="primary" className="w-1/2 h-20 text-2xl text-white font-extrabold neon-glow">Know More</Button>
                     </div>
+
                   </motion.div>
 
                 </>
