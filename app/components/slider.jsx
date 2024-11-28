@@ -219,7 +219,7 @@ export function Slider() {
                       </motion.p>
                       <br/>
                       <br/>
-                      <Button color="primary" className="w-1/2 h-20 text-2xl text-white font-extrabold neon-glow">Know More</Button>
+                      <Button color="primary" className="w-1/2 h-20 text-md md:text-2xl text-white font-extrabold neon-glow">Know More</Button>
                     </div>
 
                   </motion.div>
