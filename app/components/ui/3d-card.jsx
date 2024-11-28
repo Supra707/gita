@@ -41,7 +41,7 @@ export const CardContainer = ({
   return (
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
       <div
-        className={cn("py-20 flex items-start", containerClassName)} // Change to `items-start` for left alignment
+        className={cn(" flex items-start", containerClassName)} // Change to `items-start` for left alignment
         style={{
           perspective: "1000px",
         }}>

@@ -52,7 +52,7 @@ const Page = () => {
       <Navbarr />
       <Slider />
       <div className="flex justify-center">
-        <div className="  p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="  p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
           {platformFeatures.map((feature, index) => (
             <Card
               key={index}
