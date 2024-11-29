@@ -44,14 +44,14 @@ const platformFeatures = [
     buttonText: "Uncover Wisdom"
   }
 ];
-import { Navbarr } from './components/navbar';
+import { Navbar } from './components/navbar';
 import { Slider } from './components/slider';
 import Footer from './components/footer';
 import {Divider} from "@nextui-org/divider";
 const Page = () => {
   return (
     <div>
-      <Navbarr />
+
       <Slider />
       <div className="flex justify-center">
         <div className="  p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
@@ -68,7 +68,7 @@ const Page = () => {
         </div>
       </div>
       <Divider/>
-      <Footer/>
+
     </div>
   );
 };

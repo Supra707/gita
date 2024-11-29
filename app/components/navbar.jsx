@@ -1,28 +1,45 @@
 'use client'
-import { Navbar } from "flowbite-react";
 import { Button } from "@nextui-org/button";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-export function Navbarr() {
+export function Navbar() {
+  const pathname = usePathname();
+  
+  // Check if the current path includes 'chapters' directly in the render
+  const isChaptersPage = pathname.includes('chapters');
+
   return (
-    <Navbar fluid rounded className="bg-gradient-to-r from-orange-400 via-yellow-500 to-orange-600">
-      <Navbar.Brand href="https://flowbite-react.com">
-        <span className="self-center whitespace-nowrap neon-glow text-4xl font-semibold text-white">
-          The Bhagavad Gita
-        </span>
-      </Navbar.Brand>
-      <div className="flex md:order-2">
-        <Button color="success" className="font-bold hidden md:block">Get started</Button>
-        <Navbar.Toggle />
+    <div className="w-full h-16 bg-gradient-to-r from-orange-400 via-yellow-500 to-orange-600">
+      <div className="relative top-[15px] flex justify-center gap-x-8 md:justify-around items-center">
+        <div className="flex gap-x-96 ml-4 items-center">
+          <Link href="/">
+            <span className="self-center whitespace-nowrap neon-glow text-4xl font-semibold text-white">
+              श्रीमद्भगवद्गीता
+            </span>
+          </Link>
+          <div className="gap-x-4 hidden md:flex">
+            <Link className="text-xl font-extrabold text-white" href="/" >
+              Home
+            </Link>
+            <Link className="text-xl font-extrabold text-white" href="/about">
+              About
+            </Link>
+            <Link className="text-xl font-extrabold text-white" href="/contactus">
+              Contact Us
+            </Link>
+          </div>
+        </div>
+        
+        {/* Conditionally render the button based on the path */}
+        {!isChaptersPage && (
+          <Link href="/chapters">
+            <Button color="success" className="box-glow font-bold hover:scale-105 transition all duration-2000">
+              Go to Chapters
+            </Button>
+          </Link>
+        )}
       </div>
-      <Navbar.Collapse>
-        <Navbar.Link className="text-xl font-extrabold text-white" href="#" active>
-          Home
-        </Navbar.Link>
-        <Navbar.Link className="text-xl font-extrabold text-white" href="#">About</Navbar.Link>
-        <Navbar.Link className="text-xl font-extrabold text-white" href="#">Services</Navbar.Link>
-        <Navbar.Link className="text-xl font-extrabold text-white" href="#">Pricing</Navbar.Link>
-        <Navbar.Link className="text-xl font-extrabold text-white" href="#">Contact</Navbar.Link>
-      </Navbar.Collapse>
-    </Navbar>
+    </div>
   );
 }

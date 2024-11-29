@@ -3,6 +3,7 @@ import { Carousel } from "flowbite-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@nextui-org/button";
+import Link from "next/link";
 export function Slider() {
   const [activeSlide, setActiveSlide] = useState(0);
 
@@ -149,7 +150,7 @@ export function Slider() {
 
   return (
     <div className="h-[100vh] relative">
-      <Carousel pauseOnHover 
+      <Carousel slideInterval={5000}
         onSlideChange={(currentSlide) => setActiveSlide(currentSlide)}
         indicators={false}
       >
@@ -213,13 +214,15 @@ export function Slider() {
                             stiffness: 100
                           }
                         }}
-                       
+
                       >
                         {chapter.sub_heading}
                       </motion.p>
-                      <br/>
-                      <br/>
-                      <Button color="primary" className="w-1/2 h-20 text-md md:text-2xl text-white font-extrabold neon-glow">Know More</Button>
+                      <br />
+                      <br />
+                      <Link href={`/chapters/${index+1}`}>
+                        <Button color="primary" className="md:w-1/2 md:h-20 md:text-2xl text-white font-extrabold neon-glow">Know More</Button></Link>
+
                     </div>
 
                   </motion.div>

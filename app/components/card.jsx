@@ -6,7 +6,7 @@ import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import Link from "next/link";
 
 // Modify the Card component to accept props for dynamic data
-export function Card({ title, description, imageSrc, link, buttonText }) {
+export function Card({ title, description, imageSrc,  buttonText }) {
   return (
     <CardContainer className="inter-var">
       <CardBody
@@ -35,19 +35,11 @@ export function Card({ title, description, imageSrc, link, buttonText }) {
           />
         </CardItem>
         <div className="flex justify-between items-center mt-20">
-          <CardItem
-            translateZ={20}
-            as={Link}
-            href={link}
-            target="__blank"
-            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-          >
-            Try now →
-          </CardItem>
+        
           <CardItem
             translateZ={20}
             as="button"
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+            className="px-4 py-2 w-full rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
           >
             {buttonText}
           </CardItem>
