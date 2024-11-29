@@ -61,7 +61,7 @@ const Page = () => {
               title={feature.title}
               description={feature.description}
               imageSrc={feature.imageSrc}
-              link={feature.link}
+              link="/chapters"
               buttonText={feature.buttonText}
             />
           ))}
