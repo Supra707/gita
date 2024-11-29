@@ -2,19 +2,20 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Chapterloading from '../components/chapterloading';
-import { Button } from '@nextui-org/button';
 import { Card } from '../components/card';
+import { useParams } from 'next/navigation';
+import Detailsloading from '../components/detailsloading';
 const page = () => {
   const [chapters, setChapters] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
-
+  const { id } = useParams(); 
   const get_all_chapters = async () => {
     const axios = require('axios');
 
     const options = {
       method: 'GET',
-      url: 'https://bhagavad-gita3.p.rapidapi.com/v2/chapters/',
+      url: `https://bhagavad-gita3.p.rapidapi.com/v2/chapters/`,
       params: {
         skip: '0',
         limit: '18'
