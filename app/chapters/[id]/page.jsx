@@ -9,29 +9,28 @@ const Page = () => {
   const [chapter, setChapter] = useState({}); // State to store chapters
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
-  const params = useParams();
   const { id } = useParams();
-  const urls = [
-    "https://tinyurl.com/587peb4s",
-    "https://tinyurl.com/4j76w24v",
-    "https://tinyurl.com/yc5dhux8",
-    "https://tinyurl.com/msyfv4en",
-    "https://tinyurl.com/y95mv95x",
-    "https://tinyurl.com/3n58t35m",
-    "https://tinyurl.com/37pz7v4t",
-    "https://tinyurl.com/2x8mb3ys",
-    "https://tinyurl.com/4huxdtb9",
-    "https://tinyurl.com/bddtctvy",
-    "https://tinyurl.com/yskupurd",
-    "https://tinyurl.com/55a2tw8r",
-    "https://tinyurl.com/ukpneebj",
-    "https://tinyurl.com/2fcmfejs",
-    "https://tinyurl.com/y6zsubzt",
-    "https://tinyurl.com/pnzw9prv",
-    "https://tinyurl.com/mhkukj3d",
-    "https://tinyurl.com/96h2nu9v"
+  const videoUrls = [
+    "https://www.youtube.com/embed/_9Gsy6c-UIA?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/mBjAzqoKJoI?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/g4oEUP4Ztas?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/E-TECeu7nDw?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/e9cJwVIpPVc?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/MogyeLoe9gs?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/MJlzBHbxDSk?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/mm7QSrjoM5g?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/eHj0JiiuRaQ?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/a0FGJEZqdHY?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/4bABPNlueAY?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/XqHvlUQ8BG8?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/b5h2STZX7Ro?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/ag54cHCfJGU?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/zsQVLsDvyL0?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/sosTze3oJMw?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/xU9M2F0iVno?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
+    "https://www.youtube.com/embed/1qhbkOfs280?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf"
   ];
-
+  
   const get_all_chapters = async () => {
     const axios = require('axios');
 
@@ -104,11 +103,11 @@ const Page = () => {
 
         {/* Video Section */}
         <div className="relative pb-[56.25%] h-0 overflow-hidden max-w-full">
+        
           <iframe
             className="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/_9Gsy6c-UIA?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf"
+            src={videoUrls[id-1]}
             title="श्रीमद भगवत गीता सार- अध्याय १ |Shrimad Bhagawad Geeta With Narration |Chapter 1 | Shailendra Bharti"
-            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
