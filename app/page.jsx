@@ -57,13 +57,15 @@ const Page = () => {
         <div className="  p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
           {platformFeatures.map((feature, index) => (
             <Link href="/chapters">
-              <Card
-                key={index}
-                title={feature.title}
-                description={feature.description}
-                imageSrc={feature.imageSrc}
-                buttonText={feature.buttonText}
-              />
+              <div className="cursor-pointer">
+                <Card
+                  key={index}
+                  title={feature.title}
+                  description={feature.description}
+                  imageSrc={feature.imageSrc}
+                  buttonText={feature.buttonText}
+                />
+              </div>
             </Link>
 
           ))}
