@@ -47,7 +47,7 @@ const platformFeatures = [
 import { Navbar } from './components/navbar';
 import { Slider } from './components/slider';
 import Footer from './components/footer';
-import {Divider} from "@nextui-org/divider";
+import { Divider } from "@nextui-org/divider";
 const Page = () => {
   return (
     <div>
@@ -56,18 +56,20 @@ const Page = () => {
       <div className="flex justify-center">
         <div className="  p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
           {platformFeatures.map((feature, index) => (
-            <Card
-              key={index}
-              title={feature.title}
-              description={feature.description}
-              imageSrc={feature.imageSrc}
-              link="/chapters"
-              buttonText={feature.buttonText}
-            />
+            <Link href="/chapters">
+              <Card
+                key={index}
+                title={feature.title}
+                description={feature.description}
+                imageSrc={feature.imageSrc}
+                buttonText={feature.buttonText}
+              />
+            </Link>
+
           ))}
         </div>
       </div>
-      <Divider/>
+      <Divider />
 
     </div>
   );
