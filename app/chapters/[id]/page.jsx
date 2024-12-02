@@ -7,11 +7,16 @@ import { MediaPlayer, MediaProvider } from '@vidstack/react';
 import { PlyrLayout, plyrLayoutIcons } from '@vidstack/react/player/layouts/plyr';
 import { useParams } from 'next/navigation';
 import Detailsloading from '@/app/components/detailsloading';
+import Accord from '@/app/components/accordion';
+import { Divider } from '@nextui-org/react';
+
 const Page = () => {
-  const [chapter, setChapter] = useState({}); // State to store chapters
+  const [chapter, setChapter] = useState({}); // State to store chapter data
+  const [verses, setVerses] = useState([]); // State to store verses
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
   const { id } = useParams();
+
   const videoUrls = [
     "https://www.youtube.com/embed/_9Gsy6c-UIA?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
     "https://www.youtube.com/embed/mBjAzqoKJoI?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
@@ -35,7 +40,6 @@ const Page = () => {
 
   const get_all_chapters = async () => {
     const axios = require('axios');
-
     const options = {
       method: 'GET',
       url: `https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${id}/`,
@@ -47,39 +51,62 @@ const Page = () => {
 
     try {
       const response = await axios.request(options);
-      console.log("API Response Data: ", response.data);
+      console.log("Chapter API Response Data: ", response.data);
 
       if (response.data) {
-
-        setChapter(response.data); // Set the chapters in state
+        setChapter(response.data); // Set the chapter data in state
+        fetch_verses(response.data.chapter_number); // Fetch verses after chapter data
       } else {
         setError('No data received from API');
       }
     } catch (error) {
-      console.error('Error fetching chapters:', error);
+      console.error('Error fetching chapter data:', error);
       setError('Failed to fetch data from API');
     }
   };
 
-  // First useEffect for initial mounting: check localStorage or fetch from API
-  useEffect(() => {
+  const fetch_verses = async (chapterNumber) => {
+    const axios = require('axios');
+    const options = {
+      method: 'GET',
+      url: `https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${chapterNumber}/verses/`,
+      headers: {
+        'x-rapidapi-key': 'b8dee9cb48mshcdf3b9dcfb365c8p1ae6e8jsnc937618846dd',
+        'x-rapidapi-host': 'bhagavad-gita3.p.rapidapi.com'
+      }
+    };
 
-    // If no data in localStorage, fetch it from the API
-    console.log("Fetching data from API...");
+    try {
+      const response = await axios.request(options);
+      console.log("Verses API Response Data: ", response.data);
+      
+      if (response.data) {
+        setVerses(response.data); // Update verses state
+      }
+    } catch (error) {
+      console.error('Error fetching verses:', error);
+      setError('Failed to fetch verses');
+    }
+  };
+
+  useEffect(() => {
+    // Fetch chapter data initially
+    console.log("Fetching chapter data...");
     get_all_chapters();
+
     // Simulate a minimum loading delay
     setTimeout(() => {
       setLoading(false); // Stop loading after a brief delay
     }, 1000); // 1 second delay for smooth transition
 
-  }, []); // Empty dependency array ensures this effect runs only once on mount
+  }, []); // Only fetch data once on mount
 
-  // Second useEffect: monitor changes in `chapters` state
   useEffect(() => {
-    console.log("Chapters state updated: ", chapter);
-  }, [chapter]); // This effect runs when the `chapters` state changes
+    console.log("Chapter data updated: ", chapter);
+    console.log("Verses data updated: ", verses);
+  }, [chapter, verses]);
 
-  // If still loading, show the loading skeletons
+  // If still loading, show the loading skeleton
   if (loading) {
     return (
       <div className="p-8 flex justify-center items-center min-h-screen bg-gray-100">
@@ -93,19 +120,19 @@ const Page = () => {
     return <div>{error}</div>;
   }
 
-  // Once data is loaded, display the chapters
+  // Once data is loaded, display the chapter and verses
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
-      <div className="w-full cursor-pointer bg-white p-8 rounded-lg shadow-lg hover:box-glow   transition-all duration-200">
+      <div className="w-full cursor-pointer bg-white p-8 rounded-lg shadow-lg hover:box-glow transition-all duration-200">
         {/* Chapter Title */}
         <div className="mb-4 text-center">
-          <h3 className="text-lg font-semibold text-gray-500">Chapter {chapter.chapter_number}</h3> {/* Chapter Number */}
+          <h3 className="text-lg font-semibold text-gray-500">Chapter {chapter.chapter_number}</h3>
           <h1 className="text-4xl font-bold text-center mb-6 text-gray-900">{chapter.name_translated}</h1>
         </div>
 
         {/* Video Section */}
         <div className="relative pb-[56.25%] h-0 overflow-hidden max-w-full">
-          <MediaPlayer title="" src={videoUrls[id-1]}>
+          <MediaPlayer title="" src={videoUrls[id - 1]}>
             <MediaProvider />
             <PlyrLayout thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt" icons={plyrLayoutIcons} />
           </MediaPlayer>
@@ -132,6 +159,24 @@ const Page = () => {
           </div>
         </div>
 
+        {/* Display Verses */}
+        <div className="mb-8">
+          <h3 className="text-3xl font-semibold text-gray-800 mb-4">Verses:</h3>
+          {verses.length > 0 ? (
+            <div>
+              {verses.map((verse, index) => (
+                <div key={index} className="mb-4">
+                  <strong>Verse {verse.verse_number}: </strong>
+                  <Accord verse={verse}/>
+                </div>
+              ))}
+                <Divider/>
+            </div>
+          ) : (
+            <p className="text-lg text-gray-600">No verses found.</p>
+          )}
+        </div>
+
         {/* Hindi Summary */}
         <div className="mb-8">
           <h3 className="text-3xl font-semibold text-gray-800 mb-4">Hindi Summary:</h3>
@@ -143,6 +188,8 @@ const Page = () => {
           <h3 className="text-3xl font-semibold text-gray-800 mb-4">Transliterated Name:</h3>
           <p className="text-lg text-gray-700 leading-relaxed">{chapter.name_transliterated}</p>
         </div>
+
+        
 
         {/* Navigation Buttons */}
         <div className="mt-12 flex justify-between items-center">
