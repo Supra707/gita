@@ -1,8 +1,10 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Button } from '@nextui-org/button';
+import '@vidstack/react/player/styles/base.css';
+import '@vidstack/react/player/styles/plyr/theme.css';
+import { MediaPlayer, MediaProvider } from '@vidstack/react';
+import { PlyrLayout, plyrLayoutIcons } from '@vidstack/react/player/layouts/plyr';
 import { useParams } from 'next/navigation';
 import Detailsloading from '@/app/components/detailsloading';
 const Page = () => {
@@ -30,7 +32,7 @@ const Page = () => {
     "https://www.youtube.com/embed/xU9M2F0iVno?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf",
     "https://www.youtube.com/embed/1qhbkOfs280?list=PLcgT1Y49mx8VdWJqTVQOYx5g1FCjS-3Jf"
   ];
-  
+
   const get_all_chapters = async () => {
     const axios = require('axios');
 
@@ -103,15 +105,10 @@ const Page = () => {
 
         {/* Video Section */}
         <div className="relative pb-[56.25%] h-0 overflow-hidden max-w-full">
-        
-          <iframe
-            className="absolute top-0 left-0 w-full h-full"
-            src={videoUrls[id-1]}
-            title="श्रीमद भगवत गीता सार- अध्याय १ |Shrimad Bhagawad Geeta With Narration |Chapter 1 | Shailendra Bharti"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
+          <MediaPlayer title="" src={videoUrls[id-1]}>
+            <MediaProvider />
+            <PlyrLayout thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt" icons={plyrLayoutIcons} />
+          </MediaPlayer>
         </div>
 
         {/* Chapter Meaning */}
